@@ -1,0 +1,28 @@
+# This is an example of a makefile.
+# Notice these lines start with # and are comments.
+# Put your name at the top of a makefile in a comment line.
+
+# The first target, T3D, is the one that does the linking 
+# and makes the executable file, which is named T3D.
+
+	T3D : T3D.o  Board.o  Move.o
+		g++ -Wall -o T3D T3D.o Board.o Move.o
+
+	# The next three targets do the compiling to create the
+	# three object files.
+
+	T3D.o : T3D.cc  Board.h  Move.h  T3D.h
+		g++ -Wall -c T3D.cc      
+
+	Board.o : Board.cc  Board.h  T3D.h
+		g++ -Wall -c Board.cc
+
+	Move.o : Move.cc  Move.h  T3D.h
+		g++ -Wall -c Move.cc
+
+	# Clean is an example of a pseudo-target.
+	#We use it to clean up the working directory.
+
+	Clean :
+		- rm *.o
+		- rm T3D
